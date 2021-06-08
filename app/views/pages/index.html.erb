@@ -39,13 +39,20 @@
                   <%= @incomplete_authorization_url + params[:code] %>
                 </code>
               </p>
-              <%= link_to "Отправить запрос", pages_authorize_path(code: params[:code]), class: 'btn btn-primary' %>
+              <%= link_to "Получить токен", pages_authorize_path(code: params[:code]), class: 'btn btn-primary' %>
             <% end %>
           <% else %>
-            Мы завершили авторизацию - у нас есть access_token (user_token), действительный в течение 24 часов.
-            Теперь с помощью него получаем список сообществ пользователя, где он админ.
-            <code>Request:</code>
-            <code></code>
+            <p>
+              Мы завершили авторизацию - у нас есть access_token (user_token), действительный в течение 24 часов.
+              Теперь с помощью него получаем список сообществ пользователя, где он админ.
+            </p>
+            <p>
+              <code>REQUEST:</code>
+              <code>Здесь запрос</code>
+            </p>
+            <%= link_to "Получить список сообществ", class: 'btn btn-primary' %>
+            <a href="https://api.vk.com/method/groups.get?params[user_id]=251000&params[extended]=1&params[filter]=admin&params[count]=1000&params[v]=5.131">LINK</a>
+
           <% end %>
         <% end %>
 
