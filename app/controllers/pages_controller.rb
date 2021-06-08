@@ -34,15 +34,8 @@ class PagesController < ApplicationController
     @complete_authorization_url = "https://oauth.vk.com/access_token" + "?client_id=" + client_id + "&client_secret=" + client_secret + "&redirect_uri=" + redirect_uri + "&code=" + params[:code]
 
     if @response = HTTParty.get(@complete_authorization_url)
-      @setting.vk_access_token = @response[:access_token]
+      @setting.vk_access_token = @response["access_token"]
       @setting.save!
-
-      puts "!!!!!!!!!!!!!!!!!!!!!!!!!"
-      puts "RESPONSE: #{@response}"
-      puts "@response[:access_token]: #{@response[:access_token]}"
-      puts "@response['access_token']: #{@response['access_token']}"
-      puts "@response.first: #{@response.first}"
-      puts "@response.access_token: #{@response.access_token}"
 
       redirect_to root_path,  notice: "Получили ответ от VK с токеном: #{@response}. Сохраняем токен! #{@response["access_token"]}"
     end
