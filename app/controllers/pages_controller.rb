@@ -36,7 +36,15 @@ class PagesController < ApplicationController
     if @response = HTTParty.get(@complete_authorization_url)
       @setting.vk_access_token = @response[:access_token]
       @setting.save!
-      redirect_to root_path,  notice: "Получили ответ от VK с токеном: #{@response}. Сохраняем токен! #{@response[:access_token]}"
+
+      puts "!!!!!!!!!!!!!!!!!!!!!!!!!"
+      puts "RESPONSE: #{@response}"
+      puts "@response[:access_token]: #{@response[:access_token]}"
+      puts "@response['access_token']: #{@response['access_token']}"
+      puts "@response.first: #{@response.first}"
+      puts "@response.access_token: #{@response.access_token}"
+
+      redirect_to root_path,  notice: "Получили ответ от VK с токеном: #{@response}. Сохраняем токен! #{@response["access_token"]}"
     end
   end
 
