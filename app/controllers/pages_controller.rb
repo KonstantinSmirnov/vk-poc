@@ -5,6 +5,10 @@ class PagesController < ApplicationController
   def index
     @setting = Setting.first
 
+    build_authorize_url if @setting
+  end
+
+  def build_authorize_url
     url_base = "https://oauth.vk.com/authorize"
     client_id = @setting.vk_app_id
     display = "page"
