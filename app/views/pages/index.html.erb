@@ -1,12 +1,4 @@
-<h1>VK POC Project</h1>
-<p>There is some description</p>
-And a link to the course
 
-<h3>Что нужно сделать</h3>
-<ul>
-  <li>Добавить настройки</li>
-
-</ul>
 
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
@@ -30,7 +22,10 @@ And a link to the course
             <%= link_to "Нажмите, чтобы отправить запрос и получить токен", pages_authorize_path(code: params[:code]) %>
           <% end %>
         <% else %>
-          Выбор сообщества
+          Мы завершили авторизацию - у нас есть access_token (user_token), действительный в течение 24 часов.
+          Теперь с помощью него получаем список сообществ пользователя, где он админ.
+          <code>Request:</code>
+          <code></code>
         <% end %>
         <% end %>
 

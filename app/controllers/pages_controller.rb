@@ -35,9 +35,11 @@ class PagesController < ApplicationController
 
     if @response = HTTParty.get(@complete_authorization_url)
       @setting.vk_access_token = @response["access_token"]
+      @setting.vk_token_expires_in = @response["expires_in"]
+      @setting.vk_user_id = @response["user_id"]
       @setting.save!
 
-      redirect_to root_path,  notice: "Получили ответ от VK с токеном: #{@response}. Сохраняем токен! #{@response["access_token"]}"
+      redirect_to root_path,  notice: "Получили ответ от VK: #{@response}. Сохраняем токен, user_id"
     end
   end
 
