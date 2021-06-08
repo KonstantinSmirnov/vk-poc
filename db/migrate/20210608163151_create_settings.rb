@@ -6,8 +6,8 @@ class CreateSettings < ActiveRecord::Migration[6.1]
       t.string :vk_api_version
 
       t.string :vk_access_token
-      t.integer :vk_token_expires_in
-      t.integer :vk_user_id
+      t.string :vk_token_expires_in
+      t.string :vk_user_id
 
       t.timestamps
     end

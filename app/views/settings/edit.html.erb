@@ -2,9 +2,9 @@
   <%= f.input :vk_app_id %>
   <%= f.input :vk_app_secret %>
   <%= f.input :vk_api_version %>
-  Эти 3 нужно очистить, чтобы повторить тест с нуля:
+  Три настройки ниже пришли от VK в результате авторизации, их нужно очистить, чтобы повторить тест с нуля:
   <%= f.input :vk_access_token %>
   <%= f.input :vk_token_expires_in %>
   <%= f.input :vk_user_id %>
-  <%= f.button :submit %>
+  <%= f.button :submit, class: "btn btn-default" %>
 <% end %>

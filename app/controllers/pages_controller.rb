@@ -39,7 +39,7 @@ class PagesController < ApplicationController
       @setting.vk_user_id = @response["user_id"]
       @setting.save!
 
-      redirect_to root_path,  notice: "Получили ответ от VK: #{@response}. Сохраняем все в настройки #{@response["access_token"]} ||| #{@response["expires_in"]} ||| #{@response["user_id"]}"
+      redirect_to root_path,  notice: "Получили ответ от VK: #{@response}. Сохраняем все в настройки!"
     end
   end
 
