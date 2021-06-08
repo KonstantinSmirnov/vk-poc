@@ -21,6 +21,10 @@ And a link to the course
         <% if @setting.vk_access_token.blank?  %>
           Need to authorize
           <%= link_to "Авторизоваться в ВК", @authorize_url %>
+          <% if params[code] %>
+            Получили code, теперь перейдите по этой ссылке, чтобы закончить авторизацию и получить user_token
+            <%= params[code] %>
+          <% end %>
         <% else %>
           Выбор сообщества
         <% end %>
