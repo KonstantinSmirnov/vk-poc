@@ -10,23 +10,47 @@
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <% if @setting %>
-        <% if @setting.vk_access_token.blank?  %>
-          Необходимо авторизоваться. Для этого сначала редиректим на ВК для авторизации и запроса пермишенов:
+          <% if @setting.vk_access_token.blank?  %>
+            <p>
+              У нас нет токена пользователя для внесения изменений в VK, либо он невалиден.
+              Необходимо авторизоваться. Процесс авторизации состоит из 1 шагов.
+            </p>
+            <p>
+              ШАГ 1: Сначала редиректим на ВК для авторизации и запроса пермишенов:
+            </p>
+            <p>
+              <code>
+                REQUEST: <br>
+                <%= @authorize_url %>
+              </code>
+            </p>
 
-          <%= link_to "Авторизоваться в ВК", @authorize_url %>
+            <%= link_to "Авторизоваться в VK", @authorize_url, class: 'btn btn-primary' %>
 
+            <hr>
 
-          <% if params.has_key?(:code) %>
-            Теперь получили код <%= params[:code] %>, с которым можем завершить авторизацию и получить user_token.
-            Отправляем запрос:
-            <%= link_to "Нажмите, чтобы отправить запрос и получить токен", pages_authorize_path(code: params[:code]) %>
+            <% if params.has_key?(:code) %>
+              <p>
+                ШАГ 2: В ответе получили <code><%= "code=#{params[:code]}" %></code>, он находится в URL. С его помощью мы завершаем процесс авторизации и получаем access_token, user_id.
+              </p>
+              <p>
+                <code>
+                  REQUEST: <br>
+                  <%= @incomplete_authorization_url + params[:code] %>
+                </code>
+              </p>
+              <%= link_to "Отправить запрос", pages_authorize_path(code: params[:code]), class: 'btn btn-primary' %>
+            <% end %>
+          <% else %>
+            Мы завершили авторизацию - у нас есть access_token (user_token), действительный в течение 24 часов.
+            Теперь с помощью него получаем список сообществ пользователя, где он админ.
+            <code>Request:</code>
+            <code></code>
           <% end %>
-        <% else %>
-          Мы завершили авторизацию - у нас есть access_token (user_token), действительный в течение 24 часов.
-          Теперь с помощью него получаем список сообществ пользователя, где он админ.
-          <code>Request:</code>
-          <code></code>
         <% end %>
+
+        <% if !params["access_token"].nil? %>
+          HELLO WORLD!
         <% end %>
 
       </div>
