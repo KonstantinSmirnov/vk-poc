@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_06_08_163151) do
     t.string "vk_app_id"
     t.string "vk_app_secret"
     t.string "vk_api_version"
+    t.string "vk_access_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

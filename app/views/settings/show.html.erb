@@ -14,6 +14,11 @@
   <p>
     vk_api_version: <%= @setting.vk_api_version %>
   </p>
+  <% if !@setting.vk_access_token.nil? %>
+    <p>
+      vk_access_token: <%= @setting.vk_access_token %>
+    </p>
+  <% end %>
 <% else %>
   <%= link_to "New", new_setting_path %>
 <% end %>
