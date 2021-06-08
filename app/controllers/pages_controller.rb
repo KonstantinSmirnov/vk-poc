@@ -21,8 +21,21 @@ class PagesController < ApplicationController
 
     @authorize_url = full_url_request
 
+
+  end
+
+  def authorize
+    @setting = Setting.first
+
+    client_id = @setting.vk_app_id
     client_secret = @setting.vk_app_secret
+    redirect_uri = "https://warm-savannah-24055.herokuapp.com/"
+
     @complete_authorization_url = "https://oauth.vk.com/access_token" + "?client_id=" + client_id + "&client_secret=" + client_secret + "&redirect_uri=" + redirect_uri + "&code=" + params[:code]
+
+    if @response = HTTParty.get(@complete_authorization_url)
+        redirect_to root_path,  notice: "Response from VK received: #{@response}"
+      end
   end
 
   # def authorize

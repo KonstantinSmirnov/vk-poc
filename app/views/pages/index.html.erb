@@ -19,12 +19,15 @@ And a link to the course
       <div class="accordion-body">
         <% if @setting %>
         <% if @setting.vk_access_token.blank?  %>
-          Need to authorize
+          Необходимо авторизоваться. Для этого сначала редиректим на ВК для авторизации и запроса пермишенов:
+
           <%= link_to "Авторизоваться в ВК", @authorize_url %>
+
+
           <% if params.has_key?(:code) %>
-            Получили code, теперь нужно отправить новый запрос, чтобы закончить авторизацию и получить user_token. Это должно выполняться автоматически, но сейчас, чтобы показать процесс, завершаем вручную:
-            <%= params[:code] %>
-            <%= link_to "Нажмите, чтобы завершить регистрацию", @complete_authorization_url %>
+            Теперь получили код <%= params[:code] %>, с которым можем завершить авторизацию и получить user_token.
+            Отправляем запрос:
+            <%= link_to "Нажмите, чтобы отправить запрос и получить токен", pages_authorize_path(code: params[:code]) %>
           <% end %>
         <% else %>
           Выбор сообщества

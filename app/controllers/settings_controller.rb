@@ -11,7 +11,7 @@ class SettingsController < ApplicationController
     @setting = Setting.new(setting_params)
 
     if @setting.save
-      redirect_to @setting
+      redirect_to @setting,  notice: "Saved"
     else
       render :new
     end
@@ -25,7 +25,7 @@ class SettingsController < ApplicationController
    @setting = Setting.first
 
    if @setting.update(setting_params)
-     redirect_to @setting
+     redirect_to @setting,  notice: "Saved"
    else
      render :edit
    end
