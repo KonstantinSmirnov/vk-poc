@@ -33,7 +33,7 @@ class SettingsController < ApplicationController
 
   private
     def setting_params
-      params.require(:setting).permit(:vk_app_id, :vk_app_secret, :vk_api_version, :vk_access_token)
+      params.require(:setting).permit(:vk_app_id, :vk_app_secret, :vk_api_version, :vk_access_token, :vk_token_expires_in, :vk_user_id)
     end
 
 end

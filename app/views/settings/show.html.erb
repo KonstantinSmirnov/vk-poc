@@ -17,6 +17,8 @@
   <% if !@setting.vk_access_token.nil? %>
     <p>
       vk_access_token: <%= @setting.vk_access_token %>
+      vk_token_expires_in: <%= @setting.vk_token_expires_in %>
+      vk_user_id: <%= @setting.vk_user_id %>
     </p>
   <% end %>
 <% else %>
