@@ -1,0 +1,19 @@
+
+<% if @setting %>
+  <%= link_to "Change", edit_setting_path %>
+<% else %>
+  <%= link_to "New", new_setting_path %>
+<% end %>
+
+<h3>Settings</h3>
+
+
+<p>
+  vk_app_id: <%= @setting.vk_app_id %>
+</p>
+<p>
+  vk_app_secret: <%= @setting.vk_app_secret %>
+</p>
+<p>
+  vk_api_version: <%= @setting.vk_api_version %>
+</p>

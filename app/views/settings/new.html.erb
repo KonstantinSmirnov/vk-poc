@@ -1,0 +1,6 @@
+<%= simple_form_for @setting, :url => setting_path do |f| %>
+  <%= f.input :vk_app_id %>
+  <%= f.input :vk_app_secret %>
+  <%= f.input :vk_api_version %>
+  <%= f.button :submit %>
+<% end %>
