@@ -80,7 +80,7 @@ class PagesController < ApplicationController
 
     @turn_on_market_request = "https://api.vk.com/method/groups.toggleMarket?" +
       "access_token=" + Setting.first.vk_access_token +
-      "group_id=" + @setting.vk_community_selected_id +
+      "&group_id=" + @setting.vk_community_selected_id +
       "&state=basic" +
       # "&utm_source=amway_utm_source" +
       # "&utm_medium=amway_utm_medium" +
@@ -92,6 +92,13 @@ class PagesController < ApplicationController
       if @response = HTTParty.get(@turn_on_market_request)
         redirect_to root_path,  notice: "Включили продукты #{@response}"
       end
+  end
+
+
+  def add_products
+    @setting = Setting.first
+
+    @add_product_url
   end
 
 end

@@ -62,8 +62,19 @@
                 <p>Выбранное сообщество записано в настройках, если нужно протестировать процесс заново, очистите номер сообщества.</p>
 
                 <p>Пример: отправка настроек для включения функционала магазина.</p>
+                <p>
+                  <code>
+                    REQUEST: <br>
+                    <%= turn_on_market_request %>
+                  </code>
+                </p>
 
                 <%= link_to "Отправить настройки", pages_configure_community_path, class: 'btn btn-primary' %>
+
+                <hr>
+
+                <p>Отправляем продукт</p>
+                <%= link_to "Отправить настройки", pages_add_product_path, class: 'btn btn-primary' %>
             <% end %>
         <% end %>
 
