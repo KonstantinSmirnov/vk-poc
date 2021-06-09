@@ -9,5 +9,8 @@ setting = Setting.create(
   vk_app_id: "7875221",
   vk_app_secret: "7m6jSHMKKu4MyzpOZIwQ",
   vk_api_version: "5.130",
-  vk_access_token: ""
+  vk_access_token: "",
+  vk_token_expires_in: "",
+  vk_user_id: "",
+  vk_community_selected_id: ""
 )
