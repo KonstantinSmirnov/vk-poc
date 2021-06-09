@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     client_secret = @setting.vk_app_secret
     display = "page"
     redirect_uri = "https://warm-savannah-24055.herokuapp.com/"
-    scope = "market, groups"
+    scope = "market,groups"
     response_type = "code"
     api_version = @setting.vk_api_version
 
