@@ -64,8 +64,10 @@
                 <p>Пример: отправка настроек для включения функционала магазина.</p>
                 <p>
                   <code>
-                    REQUEST: <br>
-                    <%= turn_on_market_request %>
+                    REQUEST1: <br>
+                    <%= turn_on_market_request %> <br><br>
+                    REQUEST2: <br>
+                    <%= update_market_configs %>
                   </code>
                 </p>
 
@@ -74,7 +76,7 @@
                 <hr>
 
                 <p>Отправляем продукт</p>
-                <%= link_to "Отправить настройки", pages_add_product_path, class: 'btn btn-primary' %>
+                <%= link_to "Отправить продукт", pages_add_product_path, class: 'btn btn-primary' %>
             <% end %>
         <% end %>
 

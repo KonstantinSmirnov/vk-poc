@@ -23,5 +23,22 @@ module PagesHelper
       "&v=" + Setting.first.vk_api_version
   end
 
+  def update_market_configs
+    @update_configs = "https://api.vk.com/method/groups.edit?" +
+      "access_token=" + Setting.first.vk_access_token +
+      "&group_id=" + Setting.first.vk_community_selected_id +
+      "&messages=0" +
+      "&market=1" +
+      "&market_comments=1" +
+      "&market_country=1" +
+      "&market_currency=643" +
+      "&obscene_filter=1" +
+      "&obscene_stopwords=1" +
+      "&obscene_words=testword" +
+      "&main_section=5" +
+      "&v=" + Setting.first.vk_api_version
+
+  end
+
 
 end
