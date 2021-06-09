@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     client_secret = @setting.vk_app_secret
     display = "page"
     redirect_uri = "https://warm-savannah-24055.herokuapp.com/"
-    scope = "market,groups"
+    scope = @setting.vk_scope
     response_type = "code"
     api_version = @setting.vk_api_version
 
@@ -81,7 +81,7 @@ class PagesController < ApplicationController
     @turn_on_market_request = "https://api.vk.com/method/groups.toggleMarket?" +
       "access_token=" + Setting.first.vk_access_token +
       "group_id=" + @setting.vk_community_selected_id +
-      "&state=basic" +
+      "&state=1" +
       # "&utm_source=amway_utm_source" +
       # "&utm_medium=amway_utm_medium" +
       # "&utm_campaign=amway_utm_campaign" +

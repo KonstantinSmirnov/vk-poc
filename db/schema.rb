@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_06_08_163151) do
     t.string "vk_access_token"
     t.string "vk_token_expires_in"
     t.string "vk_user_id"
+    t.string "vk_scope"
     t.string "vk_community_selected_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
