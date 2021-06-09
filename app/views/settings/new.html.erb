@@ -1,6 +1,24 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Дефолтные настройки</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">App ID <b>7875221</b></li>
+      <li class="list-group-item">App secure key <b>7m6jSHMKKu4MyzpOZIwQ</b></li>
+      <li class="list-group-item">VK API ver <b>5.130</b></li>
+    </ul>
+  </div>
+</div>
+
 <%= simple_form_for @setting, :url => setting_path do |f| %>
   <%= f.input :vk_app_id %>
   <%= f.input :vk_app_secret %>
   <%= f.input :vk_api_version %>
-  <%= f.button :submit %>
+  Три настройки ниже приходят от VK в результате авторизации, их нужно очистить, если хотим повторить тест с нуля:
+  <%= f.input :vk_access_token %>
+  <%= f.input :vk_token_expires_in %>
+  <%= f.input :vk_user_id %>
+  Выбранное сообщество:
+  <%= f.input :vk_community_selected_id %>
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>

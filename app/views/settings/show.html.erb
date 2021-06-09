@@ -14,17 +14,25 @@
   <p>
     vk_api_version: <%= @setting.vk_api_version %>
   </p>
-  <% if !@setting.vk_access_token.nil? %>
-    <p>
-      vk_access_token: <%= @setting.vk_access_token %>
-    </p>
-    <p>
-      vk_token_expires_in: <%= @setting.vk_token_expires_in %>
-    </p>
-    <p>
-      vk_user_id: <%= @setting.vk_user_id %>
-    </p>
-  <% end %>
+  <p>
+    Параметры, которые получили от ВК во время авторизации:
+  </p>
+  <p>
+    vk_access_token: <%= @setting.vk_access_token if !@setting.vk_access_token.nil? %>
+  </p>
+  <p>
+    vk_token_expires_in: <%= @setting.vk_token_expires_in if !@setting.vk_token_expires_in.nil? %>
+  </p>
+  <p>
+    vk_user_id: <%= @setting.vk_user_id if !@setting.vk_user_id.nil? %>
+  </p>
+  <p>
+    Выбранное сообщество для настройки
+  </p>
+  <p>
+    vk_community_selected_id: <%= @setting.vk_community_selected_id if !@setting.vk_community_selected_id.nil? %>
+  </p>
+
 <% else %>
   <%= link_to "New", new_setting_path %>
 <% end %>

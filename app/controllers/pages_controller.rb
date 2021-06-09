@@ -18,9 +18,17 @@ class PagesController < ApplicationController
     response_type = "code"
     api_version = @setting.vk_api_version
 
-    full_url_request = url_base + "?client_id=" + client_id + "&display=" + display + "&redirect_uri=" + redirect_uri + "&scope=" + scope + "&response_type=" + response_type + "&v=" + api_version
+    full_url_request =
+      url_base +
+      "?client_id=" + client_id +
+      "&display=" + display +
+      "&redirect_uri=" + redirect_uri +
+      "&scope=" + scope +
+      "&response_type=" + response_type +
+      "&v=" + api_version
 
     @authorize_url = full_url_request
+
     @incomplete_authorization_url = "https://oauth.vk.com/access_token" + "?client_id=" + client_id + "&client_secret=" + client_secret + "&redirect_uri=" + redirect_uri + "&code="
 
   end
@@ -44,28 +52,46 @@ class PagesController < ApplicationController
     end
   end
 
-  # def authorize
-  #   @setting = Setting.first
-  #
-  #   # https://oauth.vk.com/authorize?client_id=7838738&display=page&redirect_uri=https://smi.design/&scope=market&response_type=code&v=5.130"
-  #   url_base = "https://oauth.vk.com/authorize"
-  #   client_id = @setting.vk_app_id
-  #   display = "page"
-  #   redirect_uri = "https://smi.design/"
-  #   scope = "market"
-  #   response_type = "code"
-  #   api_version = @setting.vk_api_version
-  #
-  #   full_url_request = url_base + "?client_id=" + client_id + "&display=" + display + "&redirect_uri=" + redirect_uri + "&scope=" + scope + "&response_type=" + response_type + "&v=" + api_version
-  #
-  #
-  #
-  #   if @response = HTTParty.get("https://oauth.vk.com/authorize?client_id=7838738&display=page&redirect_uri=https://smi.design/&scope=market&response_type=code&v=5.130")
-  #     puts "!!!!!!!!!!!!"
-  #     puts @response
-  #     redirect_to root_path
-  #   end
+  def get_communities_list
+    @get_communities_list_url = "https://api.vk.com/method/groups.get?" +
+      "access_token=" + Setting.first.vk_access_token +
+      "&user_id=" + Setting.first.vk_user_id +
+      "&extended=1" +
+      "&filter=admin" +
+      "&count=1000" +
+      "&v=" + Setting.first.vk_api_version
 
+    if @response = HTTParty.get(@get_communities_list_url)
+      redirect_to root_path(communities: @response),  notice: "Получили список сообществ от VK."
+    end
+  end
 
-  #end
+  def select_community
+    @setting = Setting.first
+
+    @setting.vk_community_selected_id = Array(params["id"].strip.split(/\s+/)).second
+    @setting.save!
+
+    redirect_to root_path, notice: "Выбрал сообщество"
+  end
+
+  def configure_community
+    @setting = Setting.first
+
+    @turn_on_market_request = "https://api.vk.com/method/groups.toggleMarket?" +
+      "access_token=" + Setting.first.vk_access_token +
+      "group_id=" + @setting.vk_community_selected_id +
+      "&state=basic" +
+      # "&utm_source=amway_utm_source" +
+      # "&utm_medium=amway_utm_medium" +
+      # "&utm_campaign=amway_utm_campaign" +
+      # "&utm_content=amway_utm_content" +
+      # "&utm_term=amway_utm_term" +
+      "&v=" + @setting.vk_api_version
+
+      if @response = HTTParty.get(@turn_on_market_request)
+        redirect_to root_path,  notice: "Включили продукты #{@response}"
+      end
+  end
+
 end
