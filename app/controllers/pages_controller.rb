@@ -9,31 +9,27 @@ class PagesController < ApplicationController
   end
 
   def build_authorize_url
-    # url_base = "https://oauth.vk.com/authorize"
-    # client_id = @setting.vk_app_id
-    # client_secret = @setting.vk_app_secret
-    # display = "popup"
-    # redirect_uri = "https://warm-savannah-24055.herokuapp.com/"
-    # scope = @setting.vk_scope
-    # response_type = "token"
-    # api_version = @setting.vk_api_version
+    url_base = "https://oauth.vk.com/authorize"
+    client_id = @setting.vk_app_id
+    client_secret = @setting.vk_app_secret
+    display = "page"
+    redirect_uri = "https://warm-savannah-24055.herokuapp.com/"
+    scope = @setting.vk_scope
+    response_type = "code"
+    api_version = @setting.vk_api_version
 
     full_url_request =
-      "https://oauth.vk.com/authorize" +
-      "?client_id=" + @setting.vk_app_id +
-      "&display=" + "popup" +
-      "&redirect_uri=" + "https://warm-savannah-24055.herokuapp.com/" +
-      "&scope=" + @setting.vk_scope +
-      "&response_type=" + "token" +
-      "&v=" + @setting.vk_api_version
+      url_base +
+      "?client_id=" + client_id +
+      "&display=" + display +
+      "&redirect_uri=" + redirect_uri +
+      "&scope=" + scope +
+      "&response_type=" + response_type +
+      "&v=" + api_version
 
     @authorize_url = full_url_request
 
-    @incomplete_authorization_url = "https://oauth.vk.com/access_token" +
-      "?client_id=" + @setting.vk_app_id +
-      "&client_secret=" + @setting.vk_app_secret +
-      "&redirect_uri=" + "https://warm-savannah-24055.herokuapp.com/" +
-      "&code="
+    @incomplete_authorization_url = "https://oauth.vk.com/access_token" + "?client_id=" + client_id + "&client_secret=" + client_secret + "&redirect_uri=" + redirect_uri + "&code="
 
   end
 
