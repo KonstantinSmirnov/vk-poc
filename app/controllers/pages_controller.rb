@@ -121,10 +121,31 @@ class PagesController < ApplicationController
   end
 
 
-  def add_products
+  def add_product
     @setting = Setting.first
 
-    @add_product_url
+    @add_product_url = "https://api.vk.com/method/market.add?" +
+      "access_token=" + Setting.first.vk_access_token +
+      "&owner_id=" + "-#{@setting.vk_community_selected_id}" +
+      "&name=Name" +
+      "&description=Description" +
+      "&category_id=1" +
+      "&price=34" +
+      "&old_price=345" +
+      "&deleted=0" +
+      "&main_photo_id=1" +
+      # "&photo_ids=345" +
+      "&url=345" +
+      "&dimension_width=34" +
+      "&dimension_height=34" +
+      "&dimension_length=34" +
+      "&weight=34" +
+      "&sku=32456" +
+      "&v=" + @setting.vk_api_version
+
+    if @response = HTTParty.get(@add_product_url)
+      redirect_to root_path,  notice: "Добавили продукт #{@response}"
+    end
   end
 
 end
