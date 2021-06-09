@@ -75,7 +75,7 @@ class PagesController < ApplicationController
     redirect_to root_path, notice: "Выбрал сообщество"
   end
 
-  def configure_community
+  def configure_community1
     @setting = Setting.first
 
     @turn_on_market_request = "https://api.vk.com/method/groups.toggleMarket?" +
@@ -89,26 +89,35 @@ class PagesController < ApplicationController
       # "&utm_term=amway_utm_term" +
       "&v=" + @setting.vk_api_version
 
-      @update_configs = "https://api.vk.com/method/groups.edit?" +
-        "access_token=" + Setting.first.vk_access_token +
-        "&group_id=" + @setting.vk_community_selected_id +
-        "&messages=0" +
-        "&market=1" +
-        "&market_comments=1" +
-        "&market_country=1" +
-        "&country=1" +
-        "&market_currency=643" +
-        "&obscene_filter=1" +
-        "&obscene_stopwords=1" +
-        "&obscene_words=testword" +
-        "&main_section=5" +
-        "&v=" + @setting.vk_api_version
+
 
       if @response = HTTParty.get(@turn_on_market_request)
-        if @response = HTTParty.get(@update_configs)
-          redirect_to root_path,  notice: "Включили продукты #{@response}"
-        end
+        redirect_to root_path,  notice: "Включили продукты #{@response}"
       end
+  end
+
+  def configure_community2
+    @setting = Setting.first
+
+    @update_configs = "https://api.vk.com/method/groups.edit?" +
+      "access_token=" + Setting.first.vk_access_token +
+      "&group_id=" + @setting.vk_community_selected_id +
+      "&messages=0" +
+      "&market=1" +
+      "&market_comments=1" +
+      "&market_country=1" +
+      "&country=1" +
+      "&market_currency=643" +
+      "&obscene_filter=1" +
+      "&obscene_stopwords=1" +
+      "&obscene_words=testword" +
+      "&main_section=5" +
+      "&v=" + @setting.vk_api_version
+
+      if @response = HTTParty.get(@update_configs)
+        redirect_to root_path,  notice: "Обновили настройки #{@response}"
+      end
+
   end
 
 

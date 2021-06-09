@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'pages/authorize'
   get 'pages/get_communities_list'
   post 'pages/select_community'
-  get 'pages/configure_community'
+  get 'pages/configure_community1'
+  get 'pages/configure_community2'
   get 'pages/add_product'
 
   resource :setting
