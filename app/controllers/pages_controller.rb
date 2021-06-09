@@ -96,6 +96,7 @@ class PagesController < ApplicationController
         "&market=1" +
         "&market_comments=1" +
         "&market_country=1" +
+        "&country=1" +
         "&market_currency=643" +
         "&obscene_filter=1" +
         "&obscene_stopwords=1" +
